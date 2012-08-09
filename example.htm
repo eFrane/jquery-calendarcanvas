@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+  <head>
+    <title>calendar canvas demo</title>
+    <script type="text/javascript" 
+      src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">
+    </script>
+    <script type="text/javascript" src="src/jquery.calcanvas.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('#thebigone').calendarize({size: 512});
+        $('li').calendarize({size: 24, preserveContent: true});
+      });
+    </script>
+  </head>
+  <body>
+    <h1>calendar canvas demo</h1>
+
+    <div id="thebigone" data-calendar="May 31"></div>
+
+    <ul>
+      <li data-calendar-top="August" data-calendar-main="9">Some strange date.</li>
+      <li data-calendar-top="March" data-calendar-main="20">Some other strange date.</li>
+      <li data-calendar="June 15">And just to be sure a third one, with different data encoding.</li>
+    </ul>
+  </body>
+</html>
