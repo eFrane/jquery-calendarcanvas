@@ -114,7 +114,10 @@
 
     return this.each(function() {
       if (!options.preserveContent) $(this).empty();
-      $(this).prepend('<canvas />');
+      if (!$('canvas', this) || $('canvas', this).attr('data-is-calendarcanvas') !== 1)
+      {
+        $(this).prepend('<canvas data-is-calendarcanvas="1" />');
+      }
 
       var canvas = $('canvas', this);
       canvas.attr('width', options.size).attr('height', options.size);
@@ -148,8 +151,7 @@
       sy   += options.size * 0.15;
       size -= sy;
 
-      var mainStr = functions.getAreaData(this, "main");
-
+      var dx, dy;
       dx = options.size / 2;
       dy = options.size / 2 + fontSize / 2;
 
@@ -157,6 +159,7 @@
       ctx.shadowColor = options.mainFrontShadowColor;
       ctx.shadowOffsetX = ctx.shadowOffsetY = size * options.shadow / 12;
 
+      var mainStr = functions.getAreaData(this, "main");
       ctx.fillText(mainStr, dx, dy);
       ctx.shadowBlur = ctx.shadowOffsetY = ctx.shadowOffsetX = 0;
 
@@ -186,14 +189,18 @@
       ctx.shadowBlur = 0;
 
       // top bar content
-      var topBarStr = functions.getAreaData(this, "top");
       fontSize = (sy - sx) * 0.7;
       ctx.textAlign = "center";
       ctx.font = fontSize+"px "+options.topFont;
+
       ctx.fillStyle = options.topFrontColor;
       ctx.shadowColor = options.topFrontShadowColor;
       ctx.shadowOffsetX = ctx.shadowOffsetY = size * options.shadow / 16;
-      ctx.fillText(topBarStr, size / 2 + sx, sy - (sy - sx) * 0.3); // FIXME: that y-coordinate is awfully wrong
+
+      var topBarStr = functions.getAreaData(this, "top");
+      ctx.fillText(topBarStr, size / 2 + sx, sy - (sy - sx) * 0.3);
+
+      $(canvas).attr('title', topBarStr+" "+mainStr);
     });
   }
 })(jQuery);
