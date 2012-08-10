@@ -9,7 +9,8 @@
     <script type="text/javascript">
       $(document).ready(function() {
         $('#thebigone').calendarize({size: 512});
-        $('li').calendarize({size: 24, preserveContent: true});
+        $('li').calendarize({size: 24, preserveContent: true, lineWidth: 0.5});
+        $('#thesmallone').calendarize({size: 16, lineWidth: 0.3, preserveContent: true});
       });
     </script>
   </head>
@@ -23,5 +24,7 @@
       <li data-calendar-top="March" data-calendar-main="20">Some other strange date.</li>
       <li data-calendar="June 15">And just to be sure a third one, with different data encoding.</li>
     </ul>
+
+    <div id="thesmallone" data-calendar="March 14">I'm just a teeny tiny icon.</li>
   </body>
 </html>

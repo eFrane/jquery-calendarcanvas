@@ -25,22 +25,32 @@
   $.fn.calendarize = function(options)
     {
       var defaults = {
-      topBackColor   : "#ff0011",
+      topBackColor   : "#f01",
       topFrontColor  : "#fff",
-      mainBackColor  : "#fefefe",
-      mainFrontColor : "#000",
+
+      mainBackColor   : "#fefefe",
+      mainFrontColor  : "#000",
+      
+      borderColor     : "#000",
+
+      topFrontShadowColor  : "#333",
+      mainBackShadowColor  : "#ccc",
+      mainFrontShadowColor : "#000",
 
       preserveContent : false,
 
-      size   : 32,  // denotes height and width
-      shadow : 0.1,
+      size      : 32,
+      shadow    : 0.1,
 
       topFont  : "Verdana",
       mainFont : "Arial"
     };
 
     options = $.extend({}, defaults, options);
-    options.radius = Math.log(options.size)/Math.log(2 * Math.sqrt(2));
+
+    // radius and lineWidth are calculated based on the size
+    options.radius    = Math.log(options.size) / Math.log(2 * Math.sqrt(2));
+    options.lineWidth = Math.log(options.size) / Math.log(48 * Math.sqrt(2));
 
     var m_this = this;
 
@@ -85,14 +95,19 @@
         var color = [];
 
         if (hex.charAt(0) == '#') hex = hex.substring(1, hex.length);
+        
         if (hex.length == 3) // short codes
         {
-          // TODO: handle short codes
+          var str = "";
+          for (i = 0; i < 3; i++) 
+            str += hex.charAt(i)+hex.charAt(i);
+          hex = str;
         }        
 
         color[0] = parseInt(hex.substring(0, 2), 16);
         color[1] = parseInt(hex.substring(2, 4), 16);
         color[2] = parseInt(hex.substring(4, 6), 16);
+
         return "rgba("+color[0]+","+color[1]+","+color[2]+","+alpha+")";
       }
     }
@@ -108,14 +123,14 @@
       ctx.clearRect(0, 0, options.size, options.size);
 
       // main rounded rect + background
-      ctx.strokeStyle = "#000";
-      ctx.lineWidth   = 2;
+      ctx.strokeStyle = options.borderColor;
+      ctx.lineWidth   = options.lineWidth;
       ctx.fillStyle = options.mainBackColor;
 
       var sx, sy;
       sx = sy = 0.5 * options.size * options.shadow;
       var size = options.size - (options.size * options.shadow);
-      ctx.shadowColor = "#ccc";
+      ctx.shadowColor = options.mainBackShadowColor;
       ctx.shadowBlur  = size * options.shadow;
 
       ctx.shadowOffsetX = ctx.shadowOffsetY = size * options.shadow / 8;
@@ -134,12 +149,12 @@
       size -= sy;
 
       var mainStr = functions.getAreaData(this, "main");
-      //if (mainStr.length === 1) mainStr = "0"+mainStr;
+
       dx = options.size / 2;
       dy = options.size / 2 + fontSize / 2;
 
       ctx.shadowBlur = size * options.shadow * 0.1;
-      ctx.shadowColor = "#000";
+      ctx.shadowColor = options.mainFrontShadowColor;
       ctx.shadowOffsetX = ctx.shadowOffsetY = size * options.shadow / 12;
 
       ctx.fillText(mainStr, dx, dy);
@@ -164,6 +179,8 @@
 
       ctx.shadowBlur    = size * options.shadow;
       ctx.shadowOffsetY = size * options.shadow / 8;
+      ctx.strokeStyle = options.borderColor;
+
       ctx.stroke();
 
       ctx.shadowBlur = 0;
@@ -174,9 +191,9 @@
       ctx.textAlign = "center";
       ctx.font = fontSize+"px "+options.topFont;
       ctx.fillStyle = options.topFrontColor;
-      ctx.shadowColor = "#333";
+      ctx.shadowColor = options.topFrontShadowColor;
       ctx.shadowOffsetX = ctx.shadowOffsetY = size * options.shadow / 16;
-      ctx.fillText(topBarStr, size / 2 + sx, sy - (sy - sx) * 0.3);
+      ctx.fillText(topBarStr, size / 2 + sx, sy - (sy - sx) * 0.3); // FIXME: that y-coordinate is awfully wrong
     });
   }
 })(jQuery);
