@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="jQuery Calendar Canvas Plugin : Calendar Icons." />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>jQuery Calendar Canvas Plugin</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/eFrane/jquery-calendarcanvas">View on GitHub</a>
+
+          <h1 id="project_title">jQuery Calendar Canvas Plugin</h1>
+          <h2 id="project_tagline">Calendar Icons.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/eFrane/jquery-calendarcanvas/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/eFrane/jquery-calendarcanvas/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h2>About</h2>
+
+<p>This plugin can be used to create calendar icons similar to the iOS Calendar app. An example with various sizes and
+the different initialization codes can be found in <code>example.htm</code>.</p>
+
+<h2>Basic Usage</h2>
+
+<pre><code>// in your head...
+$(document).ready(function() {
+  $('li').calendarize({size: 16});
+});
+
+// somewhere else...
+&lt;li data-calendar="June 15"&gt;Buy milk.&lt;/li&gt;
+</code></pre>
+
+<h2>Configuration options and defaults</h2>
+
+<pre><code>var defaults = {
+  topBackColor   : "#f01",
+  topFrontColor  : "#fff",  
+  mainBackColor   : "#fefefe",
+  mainFrontColor  : "#000",  
+  borderColor     : "#000",  
+  topFrontShadowColor  : "#333",
+  mainBackShadowColor  : "#ccc",
+  mainFrontShadowColor : "#000",  
+  preserveContent : true,
+  size      : 32,
+  shadow    : 0.1,
+  topFont  : "Verdana",
+  mainFont : "Arial"
+};
+</code></pre>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">jQuery Calendar Canvas Plugin maintained by <a href="https://github.com/eFrane">eFrane</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
