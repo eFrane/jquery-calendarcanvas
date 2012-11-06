@@ -7,7 +7,21 @@
     <meta name="description" content="jQuery Calendar Canvas Plugin : Calendar Icons." />
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">
+    </script>
+    <script type="text/javascript" src="http://raw.github.com/eFrane/jquery-calendarcanvas/master/src/jquery.calcanvas.js">
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('li').calendarize({size: 16, lineWidth: 0.6});
+        });
+    </script>
+    <style type="text/css">
+        canvas {
+            padding-right: 0.2em;
+            margin-bottom: -0.2em;
+        }
+    </style>
     <title>jQuery Calendar Canvas Plugin</title>
   </head>
 
@@ -46,6 +60,12 @@ $(document).ready(function() {
 // somewhere else...
 &lt;li data-calendar="June 15"&gt;Buy milk.&lt;/li&gt;
 </code></pre>
+
+<h2>Example</h2>
+
+<ul>
+ <li data-calendar="June 15">Buy milk.</li>
+</ul>
 
 <h2>Configuration options and defaults</h2>
 
