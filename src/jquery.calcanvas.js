@@ -37,7 +37,7 @@
       mainBackShadowColor  : "#ccc",
       mainFrontShadowColor : "#000",
 
-      preserveContent : false,
+      preserveContent : true,
 
       size      : 32,
       shadow    : 0.1,
